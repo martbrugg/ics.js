@@ -42,21 +42,32 @@ var ics = function() {
 		 * @param  {string} begin       Beginning date of event
 		 * @param  {string} stop        Ending date of event
 		 */
-		'addEvent' : function (subject, description, location, begin, stop) {
+		'addEvent' : function (subject, description, location, begin, stop, fullday) {
 			//TODO add time and time zone? use moment to format?
 			var start_date = new Date(begin);
 			var end_date = new Date(stop);
 
+			
 			var start_year = ('0000' + (start_date.getFullYear().toString())).slice(-4);
 			var start_month = ('00' + ((start_date.getMonth() + 1).toString())).slice(-2);
 			var start_day = ('00' + (start_date.getDate().toString())).slice(-2);
+			
+			
 			var start = start_year + start_month + start_day;
+			if (fullday !== true){
+				var start_time = start_date.toLocaleTimeString().split(':').join('');
+				start += 'T' + start_time + 'Z';
+			}
 
 			var end_year = ('0000' + (end_date.getFullYear().toString())).slice(-4);
 			var end_month = ('00' + ((end_date.getMonth() + 1).toString())).slice(-2);
 			var end_day = ('00' + (end_date.getDate().toString())).slice(-2);
 			var end = end_year + end_month + end_day;
-
+			if (fullday !== true){
+				var end_time = end_date.toLocaleTimeString().split(':').join('');
+				end += 'T' + end_time + 'Z';
+			}
+			
 			var calendarEvent = [
 				'BEGIN:VEVENT',
 				'CLASS:PUBLIC',
