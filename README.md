@@ -10,15 +10,16 @@ How To Use
 Simply use invoke the object and use the functions...
 	
 	var cal = ics();
-	cal.addEvent(subject, description, location, begin, end);
+	cal.addEvent(subject, description, location, begin, end, fullday);
     cal.download(filename);
 
 `begin` and `end` need to be formatted in a way that is friendly to `Date()`
+The `fullday` flag defines if the event takes the whole day removes the time of the begin and end
 
 
 Example
 -------
-* **[Demo](http://htmlpreview.github.io/?https://github.com/nwcell/ics.js/blob/master/demo/demo.html)**
+* **[Demo](http://htmlpreview.github.io/?https://github.com/martbrugg/ics.js/blob/master/demo/demo.html)**
 
 ```
 <script>
